@@ -1,128 +1,254 @@
+/* =====================================================
+   ACADEMIA.CSS - Mobile First Responsive
+   Breakpoints (padrão Bootstrap 4):
+   - Base (mobile):      < 576px   (iPhone SE, Galaxy A51 portrait)
+   - sm:                 >= 576px  (celulares grandes / landscape pequeno)
+   - md:                 >= 768px  (iPad portrait)
+   - lg:                 >= 992px  (iPad landscape / notebooks pequenos)
+   - xl:                 >= 1200px (desktop)
+   + Media queries especiais de "orientation:landscape / max-height"
+     para celulares deitados (iPhone SE e A51 landscape)
+   ===================================================== */
 
-@media (min-width: 992px){
-    
-    #rodape, #topo{
-    max-width: 1000px;
-}
-}
-@media (min-width: 1200px){
-   
-   
-    #rodape, #topo{
-        
-     max-width: 1140px;
-    }
+*, *::before, *::after{
+    box-sizing: border-box;
 }
 
-/*topo amarelo inicio*/
-#topo{
-    background:#f4d000 ;
+body{
+    background: #000;
+    overflow-x: hidden;
+}
+
+/* -----------------------------------------------------
+   IMAGENS - nunca distorcer, sempre proporcional
+   ----------------------------------------------------- */
+img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Imagens que precisam preencher uma área fixa mantendo proporção
+   (cortando ao invés de esticar) usam object-fit */
+.img-cover{
     width: 100%;
-    position:relative;
-    height: 200px;
-    margin:0 auto;
-    z-index: 1;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
+/* =======================================================
+   TOPO / CABEÇALHO (mobile first - flexbox, sem posicionamento absoluto)
+   ======================================================= */
 .header-principal, .rodape-principal {
     background: #f4d000;
     width: 100%;
     position: relative;
-    
 }
 .header-principal{
     padding-bottom: 10px;
-
 }
 .header-principal::after{
     content:'';
     width: 100%;
-    height: 40px;
+    height: 20px;
     background: #000;
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    z-index: 0;
-}
-body{
-    background: #000;
-}
-.preto{
-    background: #000;
-    color: #fff;
-}
-#topo h1{
-    color: #fff;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    position: absolute;
-    top: 53px;
-    left: 0;
-}
-#topo h1 span{
-    color: #64604f;
-}
-#topo h6{
-    position: absolute;
-    top: 95px;
-    left: 227px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: #7d7c70;
-}
-#topo .agenda {
-    position: absolute;
-    top: 80px;
-    right: 0;
-    
-}
-#topo .btn-agendar{
-    position: absolute;
-    top: 104px;
-    right: 50px;
-}
-/*topo amarelo fim*/
-/*menu inicio*/
-#topo .menu-topo{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #000;
-   
+    display: block;
+    margin-top: 10px;
 }
 
+#topo{
+    background:#f4d000;
+    width: 100%;
+    margin: 0 auto;
+    padding: 15px 15px 0 15px;
+}
+
+@media (min-width: 992px){
+    #rodape, #topo{
+        max-width: 1000px;
+    }
+}
+@media (min-width: 1200px){
+    #rodape, #topo{
+        max-width: 1140px;
+    }
+}
+
+.topo-flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.topo-brand h1{
+    color: #fff;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 28px;
+    margin: 0;
+}
+.topo-brand h1 span{
+    color: #64604f;
+}
+.topo-brand h6{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #7d7c70;
+    font-size: 13px;
+    margin: 4px 0 0 0;
+}
+
+.topo-cta{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+}
+.topo-cta .agenda{
+    font-size: 13px;
+    color: #222;
+}
+.topo-cta .btn-agendar{
+    white-space: nowrap;
+}
+
+/* menu principal */
+.menu-topo-nav{
+    background: #000;
+    width: 100%;
+    padding: 0;
+}
+.menu-topo-nav .navbar-toggler{
+    color: #fff;
+    border-color: #fff;
+    margin: 8px auto;
+    display: block;
+}
+.menu-topo-nav .navbar-toggler-icon{
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+#topo .menu-topo{
+    background: #000;
+    width: 100%;
+    flex-direction: column;
+    margin: 0;
+}
 #topo .menu-topo .nav-item .nav-link{
     color: #fff;
     background: #000;
     transition: all .25s linear 0s;
+    text-align: center;
+    padding: 12px 10px;
 }
 #topo .menu-topo .nav-item .nav-link:hover, #topo .menu-topo .nav-item .nav-link.active{
     color: #000;
     background: #f4d000;
-
-
 }
 
+/* >= 576px: cta em linha */
+@media (min-width: 576px){
+    .topo-cta{
+        flex-direction: row;
+        justify-content: center;
+    }
+}
 
-/*fim menu*/
-/*roda pe inicio*/
+/* >= 768px (tablet / iPad portrait): cabeçalho em linha, menu ainda pode colapsar */
+@media (min-width: 768px){
+    .topo-flex{
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+        padding: 10px 10px 15px 10px;
+    }
+    .topo-brand h1{
+        font-size: 34px;
+    }
+    .topo-cta{
+        flex-direction: column;
+        align-items: flex-end;
+        margin-top: 0;
+    }
+}
+
+/* >= 992px (iPad landscape / desktop): menu sempre visível, sem hamburguer */
+@media (min-width: 992px){
+    .menu-topo-nav .navbar-toggler{
+        display: none;
+    }
+    #topo .menu-topo{
+        display: flex !important;
+        flex-direction: row;
+    }
+    #topo .menu-topo .nav-item .nav-link{
+        padding: .5rem 1rem;
+    }
+}
+
+/* celulares na horizontal (altura curta) - iPhone SE e A51 landscape */
+@media (max-width: 991px) and (orientation: landscape) and (max-height: 500px){
+    #topo{
+        padding-top: 8px;
+    }
+    .topo-flex{
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+        padding-bottom: 6px;
+    }
+    .topo-brand h1{
+        font-size: 20px;
+    }
+    .topo-brand h6{
+        font-size: 11px;
+    }
+    .topo-cta{
+        flex-direction: column;
+        align-items: flex-end;
+        margin-top: 0;
+        gap: 3px;
+    }
+    .topo-cta .agenda{
+        display: none;
+    }
+    .menu-topo-nav .navbar-toggler{
+        margin: 4px auto;
+        padding: .15rem .5rem;
+    }
+    #topo .menu-topo .nav-item .nav-link{
+        padding: 8px 10px;
+    }
+}
+
+/* -----------------------------------------------------
+   RODAPÉ
+   ----------------------------------------------------- */
 #rodape {
     width: 100%;
     margin: 0 auto;
     color: #7d7c7c;
 }
-/*roda pe fim*/
-/*comeco 3 fotos*/
+.preto{
+    background: #000;
+    color: #fff;
+}
+
+/* =======================================================
+   HOME / INDEX
+   ======================================================= */
 #home .bloco1 {
     position: relative;
 }
 #home .bloco1::before{
-    
-        content: '';
-        display: block;
-        width: 100%;
-        border-bottom: 3px solid #f4d000;
-        margin-bottom: 5px;
-        margin-top: 25px;
+    content: '';
+    display: block;
+    width: 100%;
+    border-bottom: 3px solid #f4d000;
+    margin-bottom: 5px;
+    margin-top: 25px;
 }
 #home .bloco1::after{
     content: '';
@@ -132,47 +258,50 @@ body{
     margin-bottom: 25px;
     margin-top: 5px;
 }
-#home .bloco1{
+#home .carrossel-inicio{
     width: 100%;
-
 }
+#home .carrossel-inicio .carousel-inner{
+    width: 100%;
+}
+#home .carrossel-inicio img{
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+/* boxcinza - mobile first: estático, sem sobreposição */
 #home .boxcinza{
-    position: absolute;
-    width: 480px;
+    position: static;
+    width: 100%;
     background: rgba(46, 40, 40, 0.9);
-    top: 50%;
-    left: 40px;
-    padding: 50px;
-    transform: translateY(-50%);
+    padding: 25px;
+    margin-top: -5px;
 }
 #home .boxcinza h2{
     color: #f4d000;
-    left:30px;
-    font-size:20px;
-   
-   
+    font-size: 18px;
+    margin: 0 0 10px 0;
 }
 #home .boxcinza p{
-    width: 359px;
-    height: 56px;
+    width: 100%;
+    height: auto;
     font-size: 13px;
-    left: 30px;
-    top: 130px;
+    color: #fff;
+    margin-bottom: 15px;
 }
 #home .btn{
     background: #ed1c24;
-    width: 101px;
-    height: 30px;
     text-decoration: none;
-    float: right;
     border: none;
-    
-   }
+}
 
 .box3{
-    margin-top:40px ;
-    margin-bottom: 40px;
-    
+    margin-top:30px;
+    margin-bottom: 30px;
+}
+.box3 .col-md-4{
+    margin-bottom: 25px;
 }
 .box3 header{
     border-bottom: 3px solid #f4d000;
@@ -181,227 +310,345 @@ body{
     margin-bottom: 10px;
     position: relative;
 }
-
-.ico-anilia{
-
+.box3 .ico-anilia{
     display: block;
     position: absolute;
     right: 0;
     top: 8px;
     width: 25px;
     height: 10px;
+    object-fit: contain;
 }
 .box3 header h3{
-    
-    font-size: 22px;
-
-
+    font-size: 20px;
+    padding-right: 30px;
 }
-
 .box3 p{
     color: #fff;
-    
 }
-/*fim 3 fotos*/
-/*inicio sobre*/
-#sobre .img-fluid {
+.box3 img.img-fluid{
     width: 100%;
-    height: 300px;
-    border: 4px solid rgb(255, 255, 255);
-    margin-top: 10px;
-    margin-bottom: 50px;
-
+    height: 200px;
+    object-fit: cover;
 }
-#sobre h1{
-    color: #f4d000;
-    margin: 40px 0;
 
-   
+.row.box3 .col-8{
+    margin-bottom: 20px;
+}
+
+/* >= 576px: carrossel um pouco mais alto */
+@media (min-width: 576px){
+    #home .carrossel-inicio img{
+        height: 280px;
+    }
+}
+
+/* >= 768px (tablet): boxcinza volta a flutuar sobre o carrossel */
+@media (min-width: 768px){
+    #home .carrossel-inicio img{
+        height: 380px;
+    }
+    #home .bloco1{
+        position: relative;
+    }
+    #home .boxcinza{
+        position: absolute;
+        width: 60%;
+        max-width: 480px;
+        top: 50%;
+        left: 30px;
+        transform: translateY(-50%);
+        margin-top: 0;
+    }
+    #home .boxcinza h2{
+        font-size: 20px;
+    }
+}
+
+/* >= 992px (desktop) */
+@media (min-width: 992px){
+    #home .carrossel-inicio img{
+        height: 480px;
+    }
+    #home .boxcinza{
+        left: 40px;
+        padding: 50px;
+    }
+    #home .boxcinza h2{
+        font-size: 22px;
+    }
+    #home .boxcinza p{
+        font-size: 14px;
+    }
+}
+
+/* =======================================================
+   SOBRE
+   ======================================================= */
+.imgsobre img{
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border: 4px solid #fff;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.imgsobre h1{
+    color: #f4d000;
+    margin: 25px 0;
 }
 .txt2 p{
     color: #fff;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
     text-align: justify;
-    
 }
-.txt2 .btn-lg{
+.txt2 .botaoSobre{
     background: #ed1c24;
     border: #ed1c24;
-    margin-left: 50px;
-
+    width: 100%;
+    margin-bottom: 25px;
 }
 .txt3 {
     color: #fff;
-  
 }
-.txt3 header h3{
-    text-align: center;
-    font-size: 25px;
+.txt3 > div{
+    margin-bottom: 30px;
+}
+.txt3 header{
     position: relative;
-    color: #f4d000;
-    left: 20px;
-    
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 .txt3 header img{
-    display: block;
-    position: absolute;
-    top: 3px;
-    
-    width: 50px;
-    
+    width: 45px;
+    height: auto;
+    flex-shrink: 0;
 }
- 
+.txt3 header h3{
+    text-align: left;
+    font-size: 18px;
+    color: #f4d000;
+    margin: 0;
+}
 .txt3 p{
-  
     width: 100%;
-    font-size: 12px;
+    font-size: 13px;
     text-align: justify;
 }
-/*inicio visao */
- .visaototal h1{
+
+@media (min-width: 768px){
+    .imgsobre img{
+        height: 320px;
+    }
+    .txt2{
+        display: flex;
+        align-items: center;
+    }
+    .txt2 .col-md-5{
+        display: flex;
+        justify-content: flex-end;
+    }
+    .txt2 .botaoSobre{
+        width: auto;
+        margin-left: 0;
+    }
+}
+@media (min-width: 992px){
+    .imgsobre img{
+        height: 300px;
+    }
+    .txt3 header h3{
+        font-size: 22px;
+    }
+}
+
+/* =======================================================
+   NOSSA VISÃO
+   ======================================================= */
+.visaototal h1{
     color: #f4d000;
-    
 }
 .visaototal{
     color: #fff;
     margin-bottom: 20px;
-    margin-top: 50px;
-   
+    margin-top: 30px;
 }
 #visao .txtvisao{
     border: 5px solid #fff;
     text-align: justify;
-    margin-bottom: 30px;
-   
-
+    margin-bottom: 20px;
 }
-
+#visao .txtvisao .border-right img{
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
 .txtvisao header h3{
     color: #f4d000;
-    font-size: 20px;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.txtvisao header img{
+    width: 25px;
+    height: 10px;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 .border-right{
-    border-right: 5px solid #fff !important;
-    
+    border-right: none !important;
+    border-bottom: 5px solid #fff !important;
 }
 
+@media (min-width: 768px){
+    #visao .txtvisao .border-right img{
+        height: 100%;
+    }
+    .border-right{
+        border-right: 5px solid #fff !important;
+        border-bottom: none !important;
+    }
+    .txtvisao header h3{
+        font-size: 20px;
+    }
+}
 
-/*fim visao*/
-/*começo depoimento*/
+/* =======================================================
+   DEPOIMENTOS
+   ======================================================= */
 .depbox h1{
     color: #f4d000;
-    
 }
 .depbox{
-    
-    
     margin-bottom: 20px;
-   margin-top: 50px;
-   
+    margin-top: 30px;
 }
-#dep .depbox{
-
-    width: 100%;
-    text-align: justify;
-    margin-bottom: 30px;
-    padding: 9px;
-
-
-}
-
-.depbox header h3{
-    color: #f4d000;
-    font-size: 20px;
+.depbox .row.depbox{
+    align-items: baseline;
 }
 .depbox .depnum{
-    font-size: 50px;
+    font-size: 34px;
+    line-height: 1;
     color: #f4d000;
     text-align: center;
-    margin-top: 40px;
+    margin: 0;
+    padding: 0;
 }
-.depbox header p{
-    color:#fff;
-    font-size: 15px;
+.depbox header h3{
+    color: #f4d000;
+    font-size: 18px;
 }
-.depbox p{
+.depbox header p, .depbox p{
     color: #fff;
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+}
+.depbox .row.depbox > div{
+    margin-bottom: 10px;
 }
 
+@media (min-width: 768px){
+    .depbox .depnum{
+        font-size: 44px;
+    }
+}
 
-/*fim depoimento*/
-/*inicio inscreva*/
-
+/* =======================================================
+   INSCREVA-SE / CONTATO
+   ======================================================= */
 #insc .imginsc img{
-    border:5px solid #fff;
-    margin: 20px auto;
+    border: 5px solid #fff;
+    margin: 15px auto;
     width: 100%;
+    height: 220px;
+    object-fit: cover;
 }
 #insc .txtinsc header h1{
     color: #f4d000;
-    font-size: 25px;
-    margin-top: 20px;
+    font-size: 22px;
+    margin-top: 15px;
 }
 #insc .txtinsc header h3{
     color: #fff;
-    font-size: 18px;
-    margin-top: 20px;
+    font-size: 16px;
+    margin-top: 15px;
 }
 #insc .txtinsc header p{
     color: white;
+    font-size: 13px;
 }
 #insc .redes{
     text-decoration: none;
     color: #fff;
     display: inline-block;
     margin-bottom: 15px;
-    margin-left: 10px;
+    margin-right: 10px;
 }
 #insc .redes a {
    color:#fff;
+   font-size: 20px;
 }
 .form-group input{
-    margin: 10px auto;
+    margin: 8px auto;
     background: #f4d000;
-    border:none;
+    border: none;
+    width: 100%;
 }
-
 .form-group textarea {
     background: #f4d000;
     color: #000;
-    border:none;
+    border: none;
+    width: 100%;
 }
-.form-group textarea:focus {
-    background: #f4d000;
-}
-.form-group input:focus{
+.form-group textarea:focus, .form-group input:focus{
     background: #f4d000;
 }
 .form-group textarea:hover, .form-group input:hover{
-    border:1px solid #fff;
-    
+    border: 1px solid #fff;
 }
 .form-group textarea::placeholder, .form-group input::placeholder {
     color: #000;
-  }
-  #insc .btn{
-    position: relative;
-    left: 280px;
+}
+#insc .btn{
+    display: block;
+    width: 100%;
     background: #000;
     border: none;
-  }
-/*fim inscreva*/
-/*começo blog*/
+    margin-bottom: 20px;
+}
 
+@media (min-width: 768px){
+    #insc .imginsc img{
+        height: 320px;
+    }
+    #insc .btn{
+        width: auto;
+        float: right;
+    }
+}
+@media (min-width: 992px){
+    #insc .imginsc img{
+        height: 100%;
+    }
+}
+
+/* =======================================================
+   BLOG (listagem em cards)
+   ======================================================= */
 #blog .navbar-nav {
     color: #fff;
-    margin-top: 20px;
-
+    margin-top: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
-#blog .navbar-nav:hover {
-    color: #f4d000;
+#blog .navbar-nav .nav-item{
+    margin: 4px 8px;
 }
-
 #blog .nav-link{
     color: #fff;
 }
@@ -409,78 +656,73 @@ body{
     color: #f4d000;
 }
 #blog .col-3{
-    margin: 20px;
+    margin: 20px 0;
 }
 #blog .card{
     background: #2a2a2a;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     border: 1px solid #fff;
     color: #fff;
 }
 #blog .card img{
     width: 100%;
     height: 200px;
-} 
-
-
+    object-fit: cover;
+}
 #blog .card-text{
     margin-bottom:20px;
 }
-
 #blog h5 a, #blog .card-text a{
-    
     color: #fff;
-    
-    
 }
 #blog .imgUser{
-    font-size: 33px;
+    font-size: 28px;
 }
 #blog .btnComp{
     color: #fff;
-   
 }
 #blog .dropComp {
-     position: absolute;
+    position: absolute;
     right: 0;
     top: 0;
 }
 #blog h5 a:hover, #blog .card-text a:hover{
-    
     color: #f4d000;
-    
-    
 }
 #blog .card-footer{
     border-top: 1px solid #7d7c70;
 }
 #blog .card-footer a{
     color: #fff;
- 
 }
 #blog .card-footer a:hover {
     color: #f4d000;
 }
 #blog .card-footer .card-text .text-muted{
    color: #fff !important;
-  
 }
 #blog .contador {
     color: #fff;
 }
 
-/*fim blog*/
-/*começo comece*/
+@media (min-width: 768px){
+    #blog .navbar-nav{
+        justify-content: flex-start;
+    }
+}
 
+/* =======================================================
+   COMECE HOJE / CARDIO / CORE (listagem simples)
+   ======================================================= */
 #comece .navbar-nav {
     color: #fff;
-    margin-top: 20px;
-
+    margin-top: 15px;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
-#comece .navbar-nav:hover {
-    color: #f4d000;
+#comece .navbar-nav .nav-item{
+    margin: 4px 10px 4px 0;
 }
-
 #comece .nav-link{
     color: #fff;
 }
@@ -488,57 +730,79 @@ body{
     color: #f4d000;
 }
 #comece .card{
-    
     border: 2px solid #fff;
     background: #2a2a2a;
-    
+    margin-bottom: 20px;
 }
-
+#comece .card .row.no-gutters{
+    flex-direction: column;
+}
 #comece .card img{
     width: 100%;
-  
+    height: 200px;
+    object-fit: cover;
 }
 #comece .card-body{
-   position: relative;
-   left: 10px;
+   position: static;
    color: #fff;
    width: 100%;
+   padding: 15px;
 }
 #comece .card-title{
-    font-size: 30px;
+    font-size: 22px;
 }
-
 #comece .texto1 {
-    padding: 5px;
-    font-size: 20px;
-    margin-top: 30px;
+    padding: 5px 0;
+    font-size: 15px;
+    margin-top: 15px;
 }
 #comece .card-text{
     border-top: 1px solid #7d7c70;
+    display: flex;
+    gap: 15px;
+    padding-top: 8px;
 }
 #comece .text-muted {
-    font-size: 15px;
-    margin-left: 10px;
+    font-size: 13px;
+    margin-left: 0;
     color: #fff !important;
 }
-.card-body h5, p{
+.card-body h5, .card-body p{
     color: #fff;
 }
-
 .card-body a:hover{
     color: #f4d000;
     text-decoration: none;
 }
 
-/*fim comece*/
-/*começo coment*/
+@media (min-width: 768px){
+    #comece .card .row.no-gutters{
+        flex-direction: row;
+    }
+    #comece .card img{
+        height: 100%;
+        min-height: 220px;
+    }
+    #comece .card-title{
+        font-size: 26px;
+    }
+}
+@media (min-width: 992px){
+    #comece .card-title{
+        font-size: 30px;
+    }
+    #comece .texto1{
+        font-size: 18px;
+    }
+}
 
+/* =======================================================
+   COMENTÁRIOS (post individual)
+   ======================================================= */
 #coment .box-coment {
     border: 1px solid #f4d000;
     margin-bottom: 20px;
-    padding: 60px;
-
-    
+    padding: 20px;
 }
 #coment #navbarNav .nav-link{
     color: #fff;
@@ -546,56 +810,63 @@ body{
 #coment #navbarNav .nav-link:hover{
     color: #f4d000;
 }
+#coment .navbar-nav{
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+#coment .navbar-nav .nav-item{
+    margin: 4px 10px 4px 0;
+}
 #coment header{
     position: relative;
-    
 }
 #coment p{
-   
     width: 100%;
 }
 #coment header img{
     width: 30px;
     height: 30px;
     display: inline-block;
+    object-fit: cover;
+    border-radius: 50%;
 }
 #coment header small{
     color:#fff;
 }
 #coment .compoSearch{
-    position: absolute;
-    right: 0;
+    position: static;
+    display: flex;
+    width: 100%;
+    margin-top: 10px;
+}
+#coment .compoSearch input{
+    flex: 1;
 }
 #coment .compoSearch .btn{
     background: none;
     border: none;
+    color: #fff;
 }
-/*fim no cabeçalho*/
-/* inicio comentarios */
 #coment h1{
     color: #fff;
-    position: relative;
-    margin: 45px 0;
-    font-size: 40px;
+    margin: 20px 0;
+    font-size: 26px;
 }
 #coment h5{
     color: #fff;
-    position: relative;
-    margin: 45px 0;
+    margin: 20px 0;
+    font-size: 15px;
 }
-
 #coment .conteudo-coment p{
     color: #fff;
-    position: relative;
-    font-size: 18px;
+    font-size: 15px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 #coment .imgtop{
     width: 100%;
-    height: 493px;
-    position: relative;
-    margin-bottom: 35px;
-    
+    height: 220px;
+    object-fit: cover;
+    margin-bottom: 20px;
 }
 #coment .linha-vertical{
     border-left: 2px solid red;
@@ -603,31 +874,33 @@ body{
 }
 #coment strong {
     color: #fff;
-    position: relative;
-    margin:35px 0;
-    font-size: 17px;
-
+    display: block;
+    margin: 20px 0;
+    font-size: 16px;
 }
 #coment .redesbox {
   color: #fff;
- 
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 #coment .fab, #coment .fas{
-    margin-left: 30px;
-    
+    margin-left: 0;
 }
 #coment .redesbox a{
     text-decoration: none;
     color: #fff;
+    font-size: 18px;
 }
-
 #coment .titulo-coment{
     color: #fff;
+    margin-top: 15px;
 }
 #coment .cardbaixocomet{
     background: #000;
     border: 1px solid yellow;
     margin: 15px 0;
+    width: 100% !important;
 }
 #coment .core a{
     color: #fff;
@@ -637,192 +910,72 @@ body{
     text-decoration: none;
 }
 #coment .cardbaixocomet img{
-    width: 285px;
-    height: 162px;
-
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
 }
 #coment .viws{
     color: #fff;
-    
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 6px 10px;
 }
-
-
 #coment .form-group{
     color: #fff;
 }
 #coment .form-group textarea{
     background: #fff;
-    
+    width: 100%;
 }
 #coment .boxicon{
     color: #fff;
-    
+    align-items: center;
 }
 #coment .boxicon .btn{
     background: #fff;
     color: #000;
-  
 }
 #coment .fas, #coment .far{
      color: #fff;
 }
-
 #coment .box-coment .boxicon span{
- 
     text-decoration: none;
     border: none;
 }
 
-/*fim coment*/
-/* media mobile começo */
-/* começo media mobile index*/
-@media (max-width: 600px) {
-    #home .boxcinza{
-        position: static;
-        color: #f4d000;
-        background: rgba(46, 40, 40, 0.9);
-        width: 100%;
-        padding: 50px;
-    
-       
-    }
-}   @media (max-width: 600px){
-    #home .boxcinza p{
-        width: 100%;
-        margin-bottom: 50px;
-       
-    }
-
-    }   
-     @media (max-width:600px){
-        .carousel-inner{
-           
-       margin-bottom: 250px;
-        }
-    }
-    @media (max-width:600px){
-        .box3{
-         width: 100%;
-         font-size: 12px;   
-        }
-    }
-    /* fim mobile index */
-/* começo topo amarelo */
-    @media (max-width:600px){
-    #topo{
-        background:#f4d000 ;
-        width: 100%;
-        position:relative;
-        height: 250px;
-        margin:0 auto;
-        z-index: 1;
+@media (min-width: 576px){
+    #coment .imgtop{
+        height: 300px;
     }
 }
-@media (max-width:600px){
-    .header-principal {
-        background: #f4d000;
-        width: 100%;
-        position: relative;
-          padding-bottom: 10px;
+@media (min-width: 768px){
+    #coment .box-coment{
+        padding: 40px;
+    }
+    #coment .imgtop{
+        height: 400px;
+    }
+    #coment h1{
+        font-size: 34px;
+    }
+    #coment .compoSearch{
+        width: 260px;
+        margin-top: 0;
+        margin-left: auto;
     }
 }
-@media (max-width:600px){
-     #topo h1{
-    font-size: 30px;
-    position: absolute;
-    left: 40px;
-
+@media (min-width: 992px){
+    #coment .box-coment {
+        padding: 60px;
+    }
+    #coment .imgtop{
+        height: 493px;
+    }
+    #coment h1{
+        font-size: 40px;
+    }
+    #coment .cardbaixocomet{
+        width: 18rem !important;
     }
 }
-@media (max-width:600px){
-     #topo h6{
-        position: absolute;
-        top: 84px;
-       left: 108px;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        color: #7d7c70;
-    }
-}
-
-
-
-@media (max-width:600px){
-
-#topo .btn-agendar{
-    position: absolute;
-    top: 124px;
-    right: 123px;
-}
-}
-@media (max-width:600px){
-    #topo .agenda{
-      margin-bottom: 30px;
-      position: absolute;
-     top: 101px;
-     right: 98px;
-     font-size: 12px;
-    }
-}
-/* fim topo amarelo */
-/* começo sobre */
-@media (max-width:600px){
-
- .txt2 p{
-    font-size: 16px;
-    width: 100%;
-    height: 150px;
-}
-
-
-}
-
-@media (max-width:600px){
-  .botaoSobre{
-        
-        position: absolute;
-        right: 20px;
-      
-    }
-}
-
-
-
-@media (max-width:600px){
-    .txt3 header img{
-        width: 70px;
-        position: relative;
-         left: 10px;
-    }
-
-
-
-
-}
-@media (max-width:600px){
-    .txt3 header h3{
-        font-size: 15px;
-        width: 100%;
-        margin-top: 12px;
-       position: relative;
-       left: 1px;
-    }
-}
-/* visao */
-@media (max-width:600px){
-    .txtvisao {
-       width: 350px;
-       position: relative;
-       left:14px;
-
-    }
-    }
-
-    /* blog */
-    @media(max-width:600px){
-        .navbar-collapse{
-        
-            font-size: 20px;
-            text-align: center;
-        }
-    }
-    
